@@ -1,25 +1,44 @@
-# include:
-#   - ../Breizhsport_LOKI/docker-compose.yaml
-
+include:
+  - ../Breizhsport_COMMANDES/docker-compose.yml
+  - ../Breizhsport_PROMETHEUS/compose.yaml
+  - ../Breizhsport_PANIER/docker-compose.yml
 services:
-
-  breizhsport-api-gateway:
+  api-gateway:
     image: traefik:v3.2
     container_name: Breizhsport_API_GATEWAY
-    # command: --api.insecure=true --providers.docker
     command: --api.insecure --providers.docker
     ports:
-      - "80:80"
-      - "443:443"
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ../Breizhsport_API_GATEWAY/config/traefik.yaml:/etc/traefik/traefik.yaml:ro
 
-  breizhsport-front:
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
+  #   container_name: Breizhsport_RABBITMQ
+  #   ports:
+  #       - 5672:5672
+  #       - 15672:15672
+  #   volumes:
+  #       - ./data/:/var/lib/rabbitmq/
+  #       - ./log/:/var/log/rabbitmq
+
+  panier:
+    container_name: Breizhsport_PANIER
+    build:
+      context: ../Breizhsport_PANIER
+      dockerfile: Dockerfile
+    depends_on:
+      - api-gateway
+    ports:
+      - "3001:3000"
+
+  front:
     container_name: Breizhsport_FRONT
     build:
       context: ../Breizhsport_FRONT
       dockerfile: Dockerfile
+    depends_on:
+      - api-gateway
     ports:
-      - "3000:8080"
+      - "3002:8080"
