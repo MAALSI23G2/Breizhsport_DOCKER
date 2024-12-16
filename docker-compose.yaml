@@ -1,0 +1,25 @@
+# include:
+#   - ../Breizhsport_LOKI/docker-compose.yaml
+
+services:
+
+  breizhsport-api-gateway:
+    image: traefik:v3.2
+    container_name: Breizhsport_API_GATEWAY
+    # command: --api.insecure=true --providers.docker
+    command: --api.insecure --providers.docker
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../Breizhsport_API_GATEWAY/config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+
+  breizhsport-front:
+    container_name: Breizhsport_FRONT
+    build:
+      context: ../Breizhsport_FRONT
+      dockerfile: Dockerfile
+    ports:
+      - "3000:8080"
