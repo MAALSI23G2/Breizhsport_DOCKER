@@ -1,11 +1,20 @@
+networks:
+  traefik-network:
+    external: true
+
 services:
   api-gateway:
     image: traefik:v3.2
     container_name: api-gateway
-    # command: --api.insecure=true --providers.docker
-    command: --api.insecure --providers.docker
+    command:
+      - "--api.insecure=true"        # Active le dashboard non sécurisé (à ne pas utiliser en prod)
+      - "--providers.docker=true"    # Active l'intégration Docker
+      - "--entrypoints.web.address=:80" # Écoute sur le port 80
     ports:
-      - "8080:8080"
+      - "80:80"      # HTTP
+      - "8080:8080"  # Dashboard Traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+    networks:
+      - traefik-network

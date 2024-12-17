@@ -41,6 +41,7 @@ services:
       - ./docker/vhosts:/etc/apache2/sites-enabled
     networks:
       - symfony_network
+      - traefik-network
     depends_on:
       - rabbitmq
 
@@ -66,6 +67,8 @@ services:
 networks:
   symfony_network:
     driver: bridge
+  traefik-network:
+      external: true
 
 volumes:
   db-data:

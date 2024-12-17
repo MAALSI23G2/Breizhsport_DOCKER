@@ -19,6 +19,11 @@ providers:
   file:
     directory: /etc/traefik
 http:
+  middlewares:
+    test-ratelimit:
+      rateLimit:
+        average: 100
+        burst: 200
   services:
     Breizhsport_PANIER:
       loadBalancer:
@@ -33,11 +38,11 @@ http:
       entryPoints:
         - web
         - websecure
-      rule: "Path(`/panier`)"
+      rule: "PathPrefix(`/panier`)"
       service: Breizhsport_PANIER
     commande:
       entryPoints:
         - web
         - websecure
-      rule: "Path(`/commande`)"
+      rule: "PathPrefix(`/commande`)"
       service: Breizhsport_COMMANDE
