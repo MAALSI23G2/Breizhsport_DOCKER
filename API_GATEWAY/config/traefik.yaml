@@ -1,0 +1,43 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+log:
+  level: DEBUG
+accessLog: {}
+tracing: {}
+metrics:
+  addInternals: true
+api:
+  dashboard: true
+  insecure: true
+entryPoints:
+  web:
+    address: :80
+  websecure:
+    address: :443
+providers:
+  file:
+    directory: /etc/traefik
+http:
+  services:
+    Breizhsport_PANIER:
+      loadBalancer:
+        servers:
+        - url: "http://127.0.0.1:5476/"
+    Breizhsport_COMMANDE:
+      loadBalancer:
+        servers:
+        - url: "http://127.0.0.1:8000/"
+  routers:
+    panier:
+      entryPoints:
+        - web
+        - websecure
+      rule: "Path(`/panier`)"
+      service: Breizhsport_PANIER
+    commande:
+      entryPoints:
+        - web
+        - websecure
+      rule: "Path(`/commande`)"
+      service: Breizhsport_COMMANDE
