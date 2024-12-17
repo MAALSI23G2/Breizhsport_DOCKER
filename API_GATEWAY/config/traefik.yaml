@@ -23,11 +23,11 @@ http:
     Breizhsport_PANIER:
       loadBalancer:
         servers:
-        - url: "http://127.0.0.1:5476/"
+        - url: "http://PANIER:3000/"
     Breizhsport_COMMANDE:
       loadBalancer:
         servers:
-        - url: "http://127.0.0.1:8000/"
+        - url: "http://www_symfony:80/"
   routers:
     panier:
       entryPoints:

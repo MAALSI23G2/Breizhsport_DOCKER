@@ -1,19 +1,10 @@
 include:
+    - ./API_GATEWAY/docker-compose.yaml
     - ./COMMANDE/docker-compose.yaml
     - ./PANIER/docker-compose.yml
     - ./LOKI/docker-compose.yaml
     - ./RABBITMQ/docker-compose.yaml
 services:
-    api-gateway:
-        image: traefik:v3.2
-        container_name: API_GATEWAY
-        command: --api.insecure --providers.docker
-        ports:
-            - "8080:8080"
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-            - ../Breizhsport_API_GATEWAY/config/traefik.yaml:/etc/traefik/traefik.yaml:ro
-
     front:
         container_name: FRONT
         build:

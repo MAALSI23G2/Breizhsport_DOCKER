@@ -1,14 +1,10 @@
-version: '3'
-
 services:
-  reverse-proxy:
+  api-gateway:
     image: traefik:v3.2
-    container_name: Breizhsport_API_GATEWAY
+    container_name: api-gateway
     # command: --api.insecure=true --providers.docker
     command: --api.insecure --providers.docker
     ports:
-      - "80:80"
-      - "443:443"
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
