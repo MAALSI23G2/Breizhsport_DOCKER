@@ -29,6 +29,7 @@ services:
       - symfony_network
 
   www:
+    image: antoncesi/breizhsport_commande
     build:
       context: .
       dockerfile: Dockerfile
