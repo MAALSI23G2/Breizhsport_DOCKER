@@ -4,20 +4,8 @@ networks:
 
 include:
     - ./API_GATEWAY/docker-compose.yaml
-    # - ./FRONT/docker-compose.yaml
+    - ./FRONT/docker-compose.yaml
     - ./COMMANDE/docker-compose.yaml
     - ./PANIER/docker-compose.yml
-    # - ./LOKI/docker-compose.yaml
+    - ./LOKI/docker-compose.yaml
     - ./RABBITMQ/docker-compose.yaml
-services:
-    front:
-        container_name: FRONT
-        build:
-            context: ../Breizhsport_FRONT
-            dockerfile: Dockerfile
-        depends_on:
-            - api-gateway
-        ports:
-            - "3000:8080"
-        networks:
-            - traefik-network
