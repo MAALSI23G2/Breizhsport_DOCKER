@@ -28,5 +28,3 @@ services:
 networks:
     breizhsport_panier-networks:
         driver: bridge
-    traefik-network:
-        external: true

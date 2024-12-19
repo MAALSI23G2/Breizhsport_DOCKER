@@ -1,7 +1,3 @@
-networks:
-  traefik-network:
-    external: true
-
 services:
   api-gateway:
     image: traefik:v3.2

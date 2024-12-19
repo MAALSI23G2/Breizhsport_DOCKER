@@ -10,7 +10,3 @@ services:
             - api-gateway
         networks:
             - traefik-network
-
-networks:
-    traefik-network:
-        external: true

@@ -68,8 +68,6 @@ services:
 networks:
   symfony_network:
     driver: bridge
-  traefik-network:
-      external: true
 
 volumes:
   db-data:
