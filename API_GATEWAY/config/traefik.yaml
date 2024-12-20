@@ -44,5 +44,5 @@ http:
       entryPoints:
         - web
         - websecure
-      rule: "PathPrefix(`/commande`)"
+      rule: "PathPrefix(`/order`)"
       service: Breizhsport_COMMANDE
