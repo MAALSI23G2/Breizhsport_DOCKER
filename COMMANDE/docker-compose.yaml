@@ -38,7 +38,7 @@ services:
     ports:
       - "8001:80"
     volumes:
-      - ./:/var/www/html
+      # - ../breizhsport_COMMANDES/:/var/www/html
       - ./docker/vhosts:/etc/apache2/sites-enabled
     networks:
       - symfony_network
