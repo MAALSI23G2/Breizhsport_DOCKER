@@ -4,6 +4,7 @@ services:
     backend_panier:
         container_name: PANIER
         image: flobomax/breizhsport_panier
+        restart: on-failure
         ports:
             - "3001:3000"
         depends_on:
@@ -18,6 +19,7 @@ services:
     database_panier:
         container_name: PANIER_DB
         image: mongo
+        restart: on-failure
         ports:
             - "27017:27017"
         networks:

@@ -13,21 +13,6 @@ services:
     networks:
       - symfony_network
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_symfony
-    restart: always
-    depends_on:
-      - db
-    ports:
-      - "8081:80"
-    environment:
-      PMA_HOST: db
-      PMA_USER: symfony
-      PMA_PASSWORD: symfony
-    networks:
-      - symfony_network
-
   www:
     image: antoncesi/breizhsport_commande
     build:
@@ -49,6 +34,7 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
+    restart: on-failure
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
       # You should definitely change the password in production

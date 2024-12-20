@@ -1,6 +1,7 @@
 services:
   api-gateway:
     image: traefik:v3.2
+    restart: on-failure
     container_name: api-gateway
     command:
       - "--api.insecure=true"        # Active le dashboard non sécurisé (à ne pas utiliser en prod)
