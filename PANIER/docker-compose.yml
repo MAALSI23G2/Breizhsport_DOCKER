@@ -1,28 +1,28 @@
 name: breizhsport_panier
 
 services:
-    backend_panier:
-        container_name: PANIER
-        image: flobomax/breizhsport_panier
-        restart: on-failure
-        ports:
-            - "3001:3000"
-        depends_on:
-            database_panier:
-                condition: service_started
-            rabbitmq:
-                condition: service_healthy
-        networks:
-            - panier-network
-            - traefik-network
+  backend_panier:
+    container_name: PANIER
+    image: flobomax/breizhsport_panier
+    restart: on-failure
+    ports:
+      - "3001:3000"
+    depends_on:
+      database_panier:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - panier-network
+      - traefik-network
 
-    database_panier:
-        container_name: PANIER_DB
-        image: mongo
-        restart: on-failure
-        ports:
-            - "27017:27017"
-        networks:
-            - panier-network
-        volumes:
-            - ./data/db_panier:/data/db
+  database_panier:
+    container_name: PANIER_DB
+    image: mongo
+    restart: on-failure
+    ports:
+      - "27017:27017"
+    networks:
+      - panier-network
+    volumes:
+      - ./data/db_panier:/data/db

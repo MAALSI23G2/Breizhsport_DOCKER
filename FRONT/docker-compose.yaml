@@ -1,13 +1,13 @@
 name: FRONT
 
 services:
-    front:
-        container_name: FRONT
-        image: jeremy38/breizhsport_front
-        restart: on-failure
-        ports:
-            - "3000:8080"
-        depends_on:
-            - api-gateway
-        networks:
-            - front-network
+  front:
+    container_name: FRONT
+    image: jeremy38/breizhsport_front
+    restart: on-failure
+    ports:
+      - "3000:8080"
+    depends_on:
+      - api-gateway
+    networks:
+      - front-network

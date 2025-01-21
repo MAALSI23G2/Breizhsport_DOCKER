@@ -4,12 +4,12 @@ services:
     restart: on-failure
     container_name: api-gateway
     command:
-      - "--api.insecure=true"        # Active le dashboard non sécurisé (à ne pas utiliser en prod)
-      - "--providers.docker=true"    # Active l'intégration Docker
+      - "--api.insecure=true" # Active le dashboard non sécurisé (à ne pas utiliser en prod)
+      - "--providers.docker=true" # Active l'intégration Docker
       - "--entrypoints.web.address=:80" # Écoute sur le port 80
     ports:
-      - "80:80"      # HTTP
-      - "8080:8080"  # Dashboard Traefik
+      - "80:80" # HTTP
+      - "8080:8080" # Dashboard Traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
