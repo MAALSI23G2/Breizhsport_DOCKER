@@ -13,7 +13,7 @@ services:
             rabbitmq:
                 condition: service_healthy
         networks:
-            - breizhsport_panier-networks
+            - panier-network
             - traefik-network
 
     database_panier:
@@ -23,10 +23,6 @@ services:
         ports:
             - "27017:27017"
         networks:
-            - breizhsport_panier-networks
+            - panier-network
         volumes:
             - ./data/db_panier:/data/db
-
-networks:
-    breizhsport_panier-networks:
-        driver: bridge

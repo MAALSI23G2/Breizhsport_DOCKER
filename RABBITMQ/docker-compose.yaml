@@ -12,8 +12,8 @@ services:
             - RABBITMQ_DEFAULT_USER=user
             - RABBITMQ_DEFAULT_PASS=password
         networks:
-            - breizhsport_panier-networks
-            - symfony_network
+            - panier-network
+            - commande-network
         healthcheck:
             test: rabbitmq-diagnostics check_port_connectivity
             interval: 30s

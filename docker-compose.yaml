@@ -1,6 +1,18 @@
 networks:
     traefik-network:
         driver: bridge
+    api-gateway-network:
+        driver: bridge
+    commande-network:
+        driver: bridge
+    front-network:
+        driver: bridge
+    panier-network:
+        driver: bridge
+    loki-network:
+        driver: bridge
+    rabbitmq-network:
+        driver: bridge
 
 include:
     - ./API_GATEWAY/docker-compose.yaml

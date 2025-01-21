@@ -14,4 +14,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
     networks:
-      - traefik-network
+      - commande-network
+      - panier-network
+      - front-network

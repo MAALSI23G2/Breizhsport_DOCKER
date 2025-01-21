@@ -10,4 +10,4 @@ services:
         depends_on:
             - api-gateway
         networks:
-            - traefik-network
+            - front-network

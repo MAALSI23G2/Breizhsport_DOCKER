@@ -11,7 +11,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      - symfony_network
+      - commande-network
 
   www:
     image: antoncesi/breizhsport_commande
@@ -26,8 +26,7 @@ services:
       # - ../breizhsport_COMMANDES/:/var/www/html
       - ./docker/vhosts:/etc/apache2/sites-enabled
     networks:
-      - symfony_network
-      - traefik-network
+      - commande-network
     depends_on:
       - rabbitmq
 
@@ -50,10 +49,6 @@ services:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
-
-networks:
-  symfony_network:
-    driver: bridge
 
 volumes:
   db-data:
