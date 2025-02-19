@@ -24,6 +24,29 @@ http:
       rateLimit:
         average: 100
         burst: 200
+    requireJWT:
+      headers:
+        customRequestHeaders:
+          Authorization: ""
+    # authSources:
+    #   jwtSource:
+    #     jwt:
+    #       jwksFile: https://crisp-tetra-47.clerk.accounts.dev/.well-known/jwks.json
+    testHeader:
+      headers:
+        accessControlAllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+        accessControlAllowHeaders: "*"
+        accessControlAllowOriginList:
+          - "*"
+        accessControlMaxAge: 100
+        addVaryHeader: true
+    test-retry:
+      retry:
+        attempts: 4
+        initialInterval: 100ms
   services:
     Breizhsport_PANIER:
       loadBalancer:
