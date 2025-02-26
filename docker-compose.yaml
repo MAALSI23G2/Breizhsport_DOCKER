@@ -21,3 +21,4 @@ include:
     - ./PANIER/docker-compose.yml
     - ./LOKI/docker-compose.yaml
     - ./RABBITMQ/docker-compose.yaml
+    - ./FAKE_SERVICE/docker-compose.yaml

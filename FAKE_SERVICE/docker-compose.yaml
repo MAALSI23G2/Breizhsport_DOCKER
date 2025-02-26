@@ -1,0 +1,13 @@
+name: FAKE_SERVICE
+
+services:
+  fake_service:
+    container_name: FAKE_SERVICE
+    image: flobomax/fake_service
+    restart: on-failure
+    depends_on:
+      backend_panier:
+        condition: service_started
+    networks:
+      - traefik-network
+      - panier-network
